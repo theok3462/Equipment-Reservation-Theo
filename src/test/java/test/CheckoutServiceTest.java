@@ -118,6 +118,9 @@ public class CheckoutServiceTest {
         public Reservation findReservation(String id) {
             return "R-1".equals(id) ? reservation : null;
         }
+        public List<Reservation> searchReservations(String query, ReservationStatus status) {
+            return reservation.getStatus() == status ? List.of(reservation) : List.of();
+        }
         public boolean hasOpenMaintenance(String id) { return maintenance; }
         public boolean hasOpenCheckout(String id) {
             return record != null && record.isOpen();

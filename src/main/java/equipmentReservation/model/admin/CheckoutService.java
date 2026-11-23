@@ -94,6 +94,16 @@ public class CheckoutService extends AbstractModel {
         return store.findCheckout(id);
     }
 
+    public List<Reservation> searchReservations(String query, ReservationStatus status) throws Exception {
+        requireAdmin();
+        return List.copyOf(store.searchReservations(query == null ? "" : query.trim(), status));
+    }
+
+    public LocalDateTime getPickupDeadline(Reservation reservation) throws Exception {
+        LocalDateTime deadline = reservation.getStart().plusMinutes(settings.getPickupWindowMinutes());
+        return reservation.getEnd().isBefore(deadline) ? reservation.getEnd() : deadline;
+    }
+
     public List<CheckoutRecord> listOpenCheckouts() throws Exception {
         requireAdmin();
         return List.copyOf(store.listOpen());

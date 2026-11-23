@@ -2,11 +2,14 @@ package equipmentReservation.model.admin;
 
 import equipmentReservation.model.Condition;
 import equipmentReservation.model.Reservation;
+import equipmentReservation.model.ReservationStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CheckoutStore {
     Reservation findReservation(String id) throws Exception;
+
+    List<Reservation> searchReservations(String query, ReservationStatus status) throws Exception;
 
     boolean hasOpenMaintenance(String equipmentId) throws Exception;
 
