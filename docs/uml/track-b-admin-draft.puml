@@ -1,0 +1,41 @@
+@startuml TrackBAdminDraft
+title Track B - Administrator Service Draft
+skinparam classAttributeIconSize 0
+package "equipmentReservation.model.admin" {
+  class EquipmentService
+  interface EquipmentAdminStore
+  class SettingsService
+  interface SettingsStore
+  class CheckoutService
+  interface CheckoutStore
+  class MaintenanceService
+  interface MaintenanceStore
+  class CheckoutRecord
+  class MaintenanceRecord
+}
+package "equipmentReservation.controller" {
+  class EquipmentAdminController
+  class SettingsController
+  class CheckoutReturnController
+  class MaintenanceController
+}
+package "equipmentReservation.view" {
+  class EquipmentManagementView
+  class SettingsView
+  class CheckoutReturnView
+  class MaintenanceView
+}
+EquipmentService --> EquipmentAdminStore
+SettingsService --> SettingsStore
+CheckoutService --> CheckoutStore
+CheckoutService --> SettingsService
+MaintenanceService --> MaintenanceStore
+EquipmentAdminController --> EquipmentService
+SettingsController --> SettingsService
+CheckoutReturnController --> CheckoutService
+MaintenanceController --> MaintenanceService
+EquipmentManagementView --> EquipmentAdminController
+SettingsView --> SettingsController
+CheckoutReturnView --> CheckoutReturnController
+MaintenanceView --> MaintenanceController
+@enduml
