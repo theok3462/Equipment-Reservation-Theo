@@ -45,6 +45,11 @@ public class MaintenanceService extends AbstractModel {
         return record;
     }
 
+    public List<equipmentReservation.model.Reservation> getActiveReservationsFor(String equipmentId) throws Exception {
+        requireAdmin();
+        return List.copyOf(store.getActiveReservationsFor(required(equipmentId, "equipmentId", "Equipment ID")));
+    }
+
     public MaintenanceRecord closeMaintenance(String recordId) throws Exception {
         User admin = requireAdmin();
         String id = required(recordId, "recordId", "Maintenance record ID");

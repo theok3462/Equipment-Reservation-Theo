@@ -88,6 +88,7 @@ public class MaintenanceServiceTest {
                     Condition.GOOD, OperationalStatus.OPERATIONAL);
         }
         public boolean hasOpenCheckout(String id) { return checkedOut; }
+        public List<Reservation> getActiveReservationsFor(String id) { return List.of(); }
         public boolean hasOpenMaintenance(String id) {
             return record != null && record.isOpen();
         }
